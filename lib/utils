@@ -1,0 +1,888 @@
+export const typeDefs = /* GraphQL */ `
+  type Item {
+    _id: ID
+    title: String
+    description: String
+    price: Int
+    rating: Float
+    category: String
+    brand: String
+    thumbnail: String
+    images: [String]
+  }
+
+  type Deleted {
+    acknowledged: Boolean
+    deletedCount: Int
+  }
+
+  input ItemInput {
+    title: String
+    description: String
+    price: Int
+    rating: Float
+    category: String
+    brand: String
+    thumbnail: String
+    images: [String]
+  }
+
+  type Query {
+    getItem(_id: ID!): Item
+    getItems: [Item]
+  }
+
+  type Mutation {
+    newItem(input: ItemInput): Item
+    updateItem(_id: ID!, input: ItemInput): Item
+    deleteItem(_id: ID!): Deleted
+  }
+`;
+
+
+input PageUpdateInput {
+  role: String
+  host: String
+  name: String
+  slides_unset: Boolean
+  host_unset: Boolean
+  name_unset: Boolean
+  slides2: [PageSlides2UpdateInput]
+  categories_unset: Boolean
+  role_unset: Boolean
+  categories: [PageCategoryUpdateInput]
+  slides2_unset: Boolean
+  _id: ObjectId
+  slides: [PageSlideUpdateInput]
+  _id_unset: Boolean
+}
+type Page {
+  _id: ObjectId
+  categories: [PageCategory]
+  host: String
+  name: String
+  role: String
+  slides: [PageSlide]
+  slides2: [PageSlides2]
+}
+type PageCategory {
+  id: Int
+  name: String
+  tag: String
+}
+type PageSlides2 {
+  id: String
+  slideText: String
+  slideUrl: String
+}
+input StoreMerchantQueryInput {
+  name_ne: String
+  id: String
+  AND: [StoreMerchantQueryInput!]
+  name_gt: String
+  id_lt: String
+  id_lte: String
+  id_exists: Boolean
+  id_ne: String
+  name_in: [String]
+  name_gte: String
+  OR: [StoreMerchantQueryInput!]
+  id_in: [String]
+  id_nin: [String]
+  id_gt: String
+  name: String
+  name_exists: Boolean
+  name_lt: String
+  name_lte: String
+  name_nin: [String]
+  id_gte: String
+}
+type UpdateManyPayload {
+  matchedCount: Int!
+  modifiedCount: Int!
+}
+type Query {
+  item(query: ItemQueryInput): Item
+  items(query: ItemQueryInput, limit: Int = 100, sortBy: ItemSortByInput): [Item]!
+  page(query: PageQueryInput): Page
+  pages(sortBy: PageSortByInput, query: PageQueryInput, limit: Int = 100): [Page]!
+  store(query: StoreQueryInput): Store
+  stores(query: StoreQueryInput, limit: Int = 100, sortBy: StoreSortByInput): [Store]!
+}
+input PageSlideQueryInput {
+  slideText_lte: String
+  slideText_exists: Boolean
+  id_gt: String
+  OR: [PageSlideQueryInput!]
+  slideUrl_in: [String]
+  id_lte: String
+  slideUrl_lte: String
+  id: String
+  id_nin: [String]
+  slideText_gte: String
+  slideText_ne: String
+  id_exists: Boolean
+  AND: [PageSlideQueryInput!]
+  slideUrl_exists: Boolean
+  slideText: String
+  slideText_gt: String
+  slideUrl_ne: String
+  id_ne: String
+  slideUrl_lt: String
+  slideUrl_nin: [String]
+  slideUrl_gt: String
+  slideUrl_gte: String
+  id_lt: String
+  slideText_lt: String
+  slideUrl: String
+  id_gte: String
+  id_in: [String]
+  slideText_nin: [String]
+  slideText_in: [String]
+}
+input ItemUpdateInput {
+  description_unset: Boolean
+  brand_unset: Boolean
+  vendor: String
+  rating_inc: Float
+  price: Int
+  _id: ObjectId
+  images: [String]
+  vendor_unset: Boolean
+  discountPercentage_inc: Float
+  rating_unset: Boolean
+  rating: Float
+  stock_unset: Boolean
+  category_unset: Boolean
+  thumbnail_unset: Boolean
+  discountPercentage: Float
+  price_unset: Boolean
+  stock: Int
+  stock_inc: Int
+  description: String
+  brand: String
+  category: String
+  title: String
+  _id_unset: Boolean
+  images_unset: Boolean
+  price_inc: Int
+  thumbnail: String
+  deal: Boolean
+  deal_unset: Boolean
+  discountPercentage_unset: Boolean
+  title_unset: Boolean
+}
+input ItemInsertInput {
+  rating: Float
+  thumbnail: String
+  discountPercentage: Float
+  deal: Boolean
+  stock: Int
+  title: String
+  images: [String]
+  price: Int
+  brand: String
+  category: String
+  vendor: String
+  _id: ObjectId
+  description: String
+}
+type InsertManyPayload {
+  insertedIds: [ObjectId]!
+}
+input PageSlides2UpdateInput {
+  slideText: String
+  slideText_unset: Boolean
+  slideUrl: String
+  slideUrl_unset: Boolean
+  id: String
+  id_unset: Boolean
+}
+input PageSlides2InsertInput {
+  slideUrl: String
+  id: String
+  slideText: String
+}
+input PageQueryInput {
+  role_gt: String
+  _id_exists: Boolean
+  name_ne: String
+  name_in: [String]
+  host_gt: String
+  AND: [PageQueryInput!]
+  host_exists: Boolean
+  categories: [PageCategoryQueryInput]
+  role_gte: String
+  slides_nin: [PageSlideQueryInput]
+  name_gte: String
+  slides_exists: Boolean
+  role_in: [String]
+  _id_gte: ObjectId
+  slides2_exists: Boolean
+  slides: [PageSlideQueryInput]
+  categories_exists: Boolean
+  name_gt: String
+  slides_in: [PageSlideQueryInput]
+  name_exists: Boolean
+  role_lte: String
+  _id_lte: ObjectId
+  role_ne: String
+  _id_in: [ObjectId]
+  host_lt: String
+  host_ne: String
+  name: String
+  categories_nin: [PageCategoryQueryInput]
+  role_lt: String
+  slides2_nin: [PageSlides2QueryInput]
+  _id: ObjectId
+  _id_lt: ObjectId
+  host_nin: [String]
+  slides2_in: [PageSlides2QueryInput]
+  _id_ne: ObjectId
+  name_lte: String
+  role_exists: Boolean
+  _id_gt: ObjectId
+  role_nin: [String]
+  OR: [PageQueryInput!]
+  host_gte: String
+  host_in: [String]
+  name_lt: String
+  slides2: [PageSlides2QueryInput]
+  _id_nin: [ObjectId]
+  name_nin: [String]
+  role: String
+  host: String
+  host_lte: String
+  categories_in: [PageCategoryQueryInput]
+}
+input PageCategoryUpdateInput {
+  name: String
+  name_unset: Boolean
+  tag: String
+  tag_unset: Boolean
+  id: Int
+  id_inc: Int
+  id_unset: Boolean
+}
+input PageInsertInput {
+  name: String
+  role: String
+  slides: [PageSlideInsertInput]
+  slides2: [PageSlides2InsertInput]
+  _id: ObjectId
+  categories: [PageCategoryInsertInput]
+  host: String
+}
+scalar ObjectId
+scalar DateTime
+input PageSlideUpdateInput {
+  slideUrl: String
+  slideUrl_unset: Boolean
+  id: String
+  id_unset: Boolean
+  slideText: String
+  slideText_unset: Boolean
+}
+input StoreInsertInput {
+  _id: ObjectId
+  dateCreated: DateTime
+  merchant: StoreMerchantInsertInput
+  name: String
+  published: Boolean
+  totalOrders: Int
+}
+input StoreMerchantUpdateInput {
+  id: String
+  id_unset: Boolean
+  name: String
+  name_unset: Boolean
+}
+input PageSlideInsertInput {
+  id: String
+  slideText: String
+  slideUrl: String
+}
+type Store {
+  _id: ObjectId
+  dateCreated: DateTime
+  merchant: StoreMerchant
+  name: String
+  published: Boolean
+  totalOrders: Int
+}
+type StoreMerchant {
+  id: String
+  name: String
+}
+enum StoreSortByInput {
+  NAME_DESC
+  TOTALORDERS_ASC
+  TOTALORDERS_DESC
+  _ID_ASC
+  _ID_DESC
+  DATECREATED_ASC
+  DATECREATED_DESC
+  NAME_ASC
+}
+input ItemQueryInput {
+  thumbnail_exists: Boolean
+  images: [String]
+  discountPercentage_lte: Float
+  rating_lt: Float
+  deal_ne: Boolean
+  thumbnail_gte: String
+  vendor_lte: String
+  vendor_gt: String
+  rating_ne: Float
+  _id_lt: ObjectId
+  description_ne: String
+  brand_lt: String
+  vendor_lt: String
+  stock_lte: Int
+  title_lte: String
+  stock_in: [Int]
+  price_lt: Int
+  description_nin: [String]
+  description: String
+  vendor_exists: Boolean
+  title_gte: String
+  thumbnail: String
+  brand_gte: String
+  rating_gte: Float
+  description_gte: String
+  category_gte: String
+  title_nin: [String]
+  price_gte: Int
+  stock_lt: Int
+  stock_exists: Boolean
+  OR: [ItemQueryInput!]
+  rating_exists: Boolean
+  images_exists: Boolean
+  title_ne: String
+  AND: [ItemQueryInput!]
+  price_ne: Int
+  deal_exists: Boolean
+  discountPercentage_ne: Float
+  category_lt: String
+  thumbnail_ne: String
+  price_nin: [Int]
+  title_gt: String
+  _id_ne: ObjectId
+  discountPercentage_gte: Float
+  _id_gte: ObjectId
+  stock_nin: [Int]
+  vendor_nin: [String]
+  rating_in: [Float]
+  _id_nin: [ObjectId]
+  thumbnail_gt: String
+  brand_lte: String
+  stock: Int
+  thumbnail_lte: String
+  _id_in: [ObjectId]
+  thumbnail_nin: [String]
+  deal: Boolean
+  _id_exists: Boolean
+  description_in: [String]
+  description_lt: String
+  category: String
+  price_exists: Boolean
+  stock_gt: Int
+  price_lte: Int
+  brand_in: [String]
+  discountPercentage_lt: Float
+  vendor_gte: String
+  _id_lte: ObjectId
+  thumbnail_in: [String]
+  discountPercentage: Float
+  price_in: [Int]
+  title_lt: String
+  category_in: [String]
+  description_lte: String
+  discountPercentage_gt: Float
+  images_in: [String]
+  brand_exists: Boolean
+  rating: Float
+  price: Int
+  rating_nin: [Float]
+  vendor_ne: String
+  brand_nin: [String]
+  title_in: [String]
+  brand: String
+  category_exists: Boolean
+  title_exists: Boolean
+  stock_gte: Int
+  discountPercentage_in: [Float]
+  discountPercentage_exists: Boolean
+  description_exists: Boolean
+  rating_gt: Float
+  category_nin: [String]
+  _id: ObjectId
+  brand_ne: String
+  category_lte: String
+  discountPercentage_nin: [Float]
+  thumbnail_lt: String
+  price_gt: Int
+  images_nin: [String]
+  brand_gt: String
+  title: String
+  description_gt: String
+  vendor: String
+  category_gt: String
+  vendor_in: [String]
+  _id_gt: ObjectId
+  rating_lte: Float
+  category_ne: String
+  stock_ne: Int
+}
+type PageSlide {
+  id: String
+  slideText: String
+  slideUrl: String
+}
+input StoreQueryInput {
+  name_nin: [String]
+  totalOrders_lt: Int
+  name_in: [String]
+  totalOrders_ne: Int
+  _id: ObjectId
+  dateCreated_nin: [DateTime]
+  name_gte: String
+  totalOrders_in: [Int]
+  AND: [StoreQueryInput!]
+  dateCreated_lte: DateTime
+  totalOrders_gte: Int
+  name_gt: String
+  dateCreated: DateTime
+  dateCreated_exists: Boolean
+  totalOrders: Int
+  name_ne: String
+  _id_lte: ObjectId
+  dateCreated_lt: DateTime
+  merchant: StoreMerchantQueryInput
+  name_exists: Boolean
+  OR: [StoreQueryInput!]
+  totalOrders_exists: Boolean
+  _id_lt: ObjectId
+  published_ne: Boolean
+  totalOrders_lte: Int
+  dateCreated_gte: DateTime
+  name_lte: String
+  name_lt: String
+  _id_exists: Boolean
+  published_exists: Boolean
+  totalOrders_gt: Int
+  _id_gt: ObjectId
+  name: String
+  published: Boolean
+  _id_gte: ObjectId
+  _id_in: [ObjectId]
+  _id_nin: [ObjectId]
+  totalOrders_nin: [Int]
+  _id_ne: ObjectId
+  dateCreated_in: [DateTime]
+  dateCreated_ne: DateTime
+  dateCreated_gt: DateTime
+  merchant_exists: Boolean
+}
+type Item {
+  _id: ObjectId
+  brand: String
+  category: String
+  deal: Boolean
+  description: String
+  discountPercentage: Float
+  images: [String]
+  price: Int
+  rating: Float
+  stock: Int
+  thumbnail: String
+  title: String
+  vendor: String
+}
+enum ItemSortByInput {
+  DISCOUNTPERCENTAGE_ASC
+  PRICE_DESC
+  VENDOR_DESC
+  BRAND_ASC
+  CATEGORY_ASC
+  PRICE_ASC
+  TITLE_ASC
+  _ID_ASC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  _ID_DESC
+  BRAND_DESC
+  CATEGORY_DESC
+  DISCOUNTPERCENTAGE_DESC
+  RATING_ASC
+  RATING_DESC
+  STOCK_ASC
+  STOCK_DESC
+  THUMBNAIL_ASC
+  THUMBNAIL_DESC
+  TITLE_DESC
+  VENDOR_ASC
+}
+input StoreUpdateInput {
+  merchant_unset: Boolean
+  name: String
+  totalOrders_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+  name_unset: Boolean
+  published: Boolean
+  published_unset: Boolean
+  merchant: StoreMerchantUpdateInput
+  totalOrders_inc: Int
+  totalOrders: Int
+  dateCreated: DateTime
+  dateCreated_unset: Boolean
+}
+enum PageSortByInput {
+  ROLE_ASC
+  ROLE_DESC
+  _ID_ASC
+  _ID_DESC
+  HOST_ASC
+  HOST_DESC
+  NAME_ASC
+  NAME_DESC
+}
+input PageCategoryInsertInput {
+  name: String
+  tag: String
+  id: Int
+}
+type Mutation {
+  deleteManyItems(query: ItemQueryInput): DeleteManyPayload
+  deleteManyPages(query: PageQueryInput): DeleteManyPayload
+  deleteManyStores(query: StoreQueryInput): DeleteManyPayload
+  deleteOneItem(query: ItemQueryInput!): Item
+  deleteOnePage(query: PageQueryInput!): Page
+  deleteOneStore(query: StoreQueryInput!): Store
+  insertManyItems(data: [ItemInsertInput!]!): InsertManyPayload
+  insertManyPages(data: [PageInsertInput!]!): InsertManyPayload
+  insertManyStores(data: [StoreInsertInput!]!): InsertManyPayload
+  insertOneItem(data: ItemInsertInput!): Item
+  insertOnePage(data: PageInsertInput!): Page
+  insertOneStore(data: StoreInsertInput!): Store
+  replaceOneItem(query: ItemQueryInput, data: ItemInsertInput!): Item
+  replaceOnePage(query: PageQueryInput, data: PageInsertInput!): Page
+  replaceOneStore(query: StoreQueryInput, data: StoreInsertInput!): Store
+  updateManyItems(query: ItemQueryInput, set: ItemUpdateInput!): UpdateManyPayload
+  updateManyPages(query: PageQueryInput, set: PageUpdateInput!): UpdateManyPayload
+  updateManyStores(query: StoreQueryInput, set: StoreUpdateInput!): UpdateManyPayload
+  updateOneItem(query: ItemQueryInput, set: ItemUpdateInput!): Item
+  updateOnePage(query: PageQueryInput, set: PageUpdateInput!): Page
+  updateOneStore(query: StoreQueryInput, set: StoreUpdateInput!): Store
+  upsertOneItem(query: ItemQueryInput, data: ItemInsertInput!): Item
+  upsertOnePage(query: PageQueryInput, data: PageInsertInput!): Page
+  upsertOneStore(query: StoreQueryInput, data: StoreInsertInput!): Store
+}
+input StoreMerchantInsertInput {
+  id: String
+  name: String
+}
+type DeleteManyPayload {
+  deletedCount: Int!
+}
+input PageSlides2QueryInput {
+  slideUrl: String
+  OR: [PageSlides2QueryInput!]
+  slideText_exists: Boolean
+  slideUrl_nin: [String]
+  id_exists: Boolean
+  slideUrl_in: [String]
+  slideText_lte: String
+  id_in: [String]
+  slideText_ne: String
+  slideText_nin: [String]
+  slideText_gt: String
+  slideText_in: [String]
+  id_gt: String
+  id_gte: String
+  slideUrl_lte: String
+  slideUrl_exists: Boolean
+  id: String
+  AND: [PageSlides2QueryInput!]
+  id_nin: [String]
+  slideText_lt: String
+  id_lt: String
+  id_lte: String
+  slideUrl_ne: String
+  slideText: String
+  slideUrl_gte: String
+  slideUrl_gt: String
+  slideUrl_lt: String
+  slideText_gte: String
+  id_ne: String
+}
+input PageCategoryQueryInput {
+  id: Int
+  name_ne: String
+  id_ne: Int
+  AND: [PageCategoryQueryInput!]
+  tag_lte: String
+  name_gte: String
+  tag: String
+  tag_nin: [String]
+  name_in: [String]
+  OR: [PageCategoryQueryInput!]
+  name_lt: String
+  id_lt: Int
+  id_lte: Int
+  name: String
+  tag_gte: String
+  tag_in: [String]
+  name_gt: String
+  name_lte: String
+  id_exists: Boolean
+  id_gte: Int
+  tag_exists: Boolean
+  tag_gt: String
+  tag_ne: String
+  id_gt: Int
+  id_nin: [Int]
+  id_in: [Int]
+  name_exists: Boolean
+  tag_lt: String
+  name_nin: [String]
+}
+
+
+
+  // const { ref } = useInView({
+  //   initialInView: false,
+  //   triggerOnce: !hasMore,
+  //   threshold: 0.5,
+  //   onChange: async (inView) => {
+  //     if (inView && hasMore) {
+  //       if (pagn === 1) {
+  //         await fetch({
+  //           variables: { offset: limit + (moreItems?.items?.length || 0) },
+  //         }).then((res) => {
+  //           if (!(res?.data?.items?.length < limit)) {
+  //             setPagn(pagn + 1);
+  //           } else {
+  //             sethasMore(false);
+  //           }
+  //         });
+  //       } else if (pagn > 1 && hasMore) {
+  //         fetchMore({ variables: { pagn: pagn, limit: limit } }).then((res) => {
+  //           res?.data?.items?.length < limit
+  //             ? sethasMore(false)
+  //             : setPagn(pagn + 1);
+  //         });
+  //       }
+  //     }
+  //   },
+  // });
+
+  // const pl = moreItems?.items?.length || 0;
+  // console.log(NetworkStatus.fetchMore);
+
+  // const { data, isFetching } = useGetItemsQuery({ pagn: pagn, limit: limit });
+
+  // console.log(pagn);
+
+  // console.log(inView);
+  // console.log(isFetching);
+
+  // useEffect(() => {
+  //   if (inView && hasMore && data && pagn > 0 && !isFetching)
+  //     if (pagn === 1) {
+  //       setItems([...items, ...data]);
+  //       setPagn(pagn + 1);
+  //       return;
+  //     } else {
+  //       setPagn(pagn + 1);
+  //       if (data.length < limit) sethasMore(false);
+  //       setItems([...items, ...data]);
+  //     }
+  // }, [inView, hasMore, data, items, pagn, isFetching, limit]);
+
+  // const loadMore = () => {
+  //   if (data && pagn === 1) {
+  //     setItems([...items, ...data]);
+  //     setPagn(pagn + 1);
+  //     return;
+  //   }
+  //   if (data && !isFetching && pagn > 1) {
+  //     setPagn(pagn + 1);
+  //     if (data.length < limit) sethasMore(false);
+  //     setItems([...items, ...data]);
+  //   }
+  // };
+
+
+
+
+
+  // as={InfiniteScroll}
+        // loadMore={loadMore}
+        // hasMore={hasMore}
+        // initialLoad={false}
+        // // pageStart={1}
+        // // element="grid"
+        // threshold={250}
+        // loader={<Loading key={pagn} />}
+        // useWindow={false}
+
+
+        {
+      firstName: values.name.split(" ")[0],
+      lastName: values.name.split(" ")[1] || "",
+      phone: parseInt(values.phone),
+      email: values.email,
+      shippingDetails: [
+        {
+          address: values.shippingDetails.address,
+          phone: parseInt(values.shippingDetails.phone),
+          email: values.shippingDetails.email,
+          location: values.shippingDetails.location,
+          state: values.shippingDetails.state,
+        },
+      ],
+    }
+
+
+    const [shippingDetails, setShippingDetails] = useState(() =>
+    userdata?.shippingDetails || userdata?.shippingDetails?.length > 0
+      ? [userdata.shippingDetails[0]]
+      : [{ address: "", phone: "", email: "", location: "", state: "" }]
+  );
+
+  const [addNewAddress, setAddNewAddress] = useState(false);
+
+  useEffect(() => {
+    setShippingDetails([userdata.shippingDetails[shippingDetailsIndex]]);
+  }, [shippingDetailsIndex, userdata]);
+
+
+  // interface UseGQueryOptions extends UseQueryOptions {
+//   variables?: {};
+// }
+
+// export const useGQuery = (
+//   queryKey: string | string[],
+//   query: RequestDocument,
+//   requestOptions: {
+//     variables?: {};
+//     requestHeaders?: HeadersInit;
+//   },
+//   options?: UseQueryOptions
+// ) => {
+//   const output = useQuery<any>(
+//     queryKey,
+//     async () => await graphQLClient.request(query, requestOptions.variables),
+//     options
+//   );
+//   output.data;
+//   return output;
+// };
+
+
+<Grid
+              gridTemplateColumns={[
+                "repeat(auto-fit,minmax(140px,1fr))",
+                "repeat(auto-fit,minmax(120px,1fr))",
+                "repeat(auto-fit,minmax(180px,1fr))",
+              ]}
+              // gridTemplateColumns='repeat(140px)'
+              w='full'
+              maxW='1000px'
+              // alignContent='center'
+              gridAutoRows='auto'
+              rowGap={2}
+              columnGap={3}>
+              {subCWI?.items?.map((item) => (
+                <Item product={item} key={item._id} />
+              ))}
+            </Grid>
+
+
+<Flex
+          justify='space-between'
+          w='full'
+          position='fixed'
+          pr='2'
+          bottom={0}
+          bgColor='blackAlpha.900'
+          color='white'>
+          <Button size='xs' leftIcon={<FunnelIcon width={20} />}>
+            Filter
+          </Button>
+          <HStack>
+            <Button rightIcon={<ChevronDownIcon width='20' />}>
+              Best Match
+            </Button>
+            <ListBulletIcon width={25} stroke='white' />
+          </HStack>
+        </Flex>
+
+
+        HeadersInit
+        <InputRightElement
+                  display={["none", "none", "flex"]}
+                  w='auto'
+                  my={1}
+                  h='fit-content'
+                  bgColor='white'
+                  roundedLeft='none'
+                  // roundedRight={10}
+                  alignSelf='center'>
+                  <Button
+                    // py='2'
+                    size='xs'
+                    bgColor='transparent'
+                    // roundedLeft='none'
+                    // roundedRight={10}
+                    color='red'
+                    fontSize={13}
+                    _focus={{ bgColor: "transparent" }}
+                    _hover={{ bgColor: "transparent" }}
+                    rightIcon={<ChevronDownIcon color='red' />}>
+                    <Divider orientation='vertical' m='2' />
+                    By category
+                  </Button>
+                
+                
+
+
+
+                 // const sortFilterReducer = (
+  //   state: SortFilterState,
+  //   action: SortFilterAction
+  // ) => {
+  //   switch (action.type) {
+  //     case "yoo": {
+  //       // console.log("yoo");
+  //       // return state
+  //     }
+  //     default:
+  //       return state;
+  //   }
+  // };
+
+    const initialState = { count: 0 };
+
+  const [sortFilterState, dispatchSF] = useReducer(
+    sortFilterReducer,
+    initialState
+  );
+
+   {/* <InputGroup w='full' mt='3'>
+              <InputLeftElement h='full'>
+                <SearchIcon color='red' boxSize={5} />
+              </InputLeftElement>
+
+              <Input
+                size='sm'
+                type='text'
+                placeholder='search'
+                bgColor='white'
+                rounded='lg'
+                // _focus={{ bgColor: "white" }}
+                // _placeholder={{ color: "gray.500" }}
+              />
+            </InputGroup> */}
