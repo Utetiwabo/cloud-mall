@@ -1,0 +1,126 @@
+input {
+  outline: none;
+}
+
+.root {
+  font-family: var(--font-poppins);
+}
+
+.svvg1 {
+  opacity: 1;
+  /* transform: rotate(180deg); */
+  animation: spin 4s ease-in-out;
+}
+@keyframes spin {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg);
+    /* transform: scale(0.8); */
+  }
+  25% {
+    opacity: 1;
+    transform: rotate(270deg);
+  }
+  50% {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+.svvg2 {
+  opacity: 0.75;
+  animation: animate1 5s ease infinite;
+}
+@keyframes animate1 {
+  0% {
+    opacity: 1;
+    transform: rotate(20deg);
+  }
+  50% {
+    opacity: 0.75;
+    transform: rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(20deg);
+  }
+}
+
+.svvg3 {
+  opacity: 0.75;
+  animation: animate2 5s ease infinite;
+}
+@keyframes animate2 {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0.75;
+    transform: rotate(25deg);
+    /* fill: red; */
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+
+/* styles.css */
+.CollapsibleContent[data-state="open"] {
+  animation: slideDown 250ms ease-in-out;
+}
+.CollapsibleContent[data-state="closed"] {
+  animation: slideUp 250ms ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.AvatarImage {
+  border-radius: inherit;
+}
+
+button {
+  outline: none;
+  /* all: unset; */
+}
+
+.PrettyScrollBar ::-webkit-scrollbar {
+  height: "8px";
+  background-color: "white";
+  border-radius: "30px";
+}
+
+.PrettyScrollBar ::-webkit-scrollbar-thumb {
+  height: "8px";
+  background-color: "gray";
+  border-radius: "30px";
+}
